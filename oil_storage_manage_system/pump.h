@@ -1,12 +1,12 @@
 #ifndef OIL_STORAGE_MANAGE_SYSTEM_PUMP_H
 #define OIL_STORAGE_MANAGE_SYSTEM_PUMP_H
 
-#define TIME_UNIT 10;               //время в мс, за которое происходит одно изменение
-#define PUMP_ON 1;                  //насос включен
-#define PUMP_OFF 0;                 //насос выключен
+#define TIME_UNIT 10                //время в мс, за которое происходит одно изменение
+#define PUMP_ON 1                   //насос включен
+#define PUMP_OFF 0                  //насос выключен
 
 /**
- * насос для перекачки нефтпродуктов
+ * насос для перекачки нефтeпродуктов
  */
 struct _pump;
 typedef struct _pump pump;
@@ -17,14 +17,13 @@ typedef struct _pump pump;
  * @param delta_per_unit_time скорость перекачки (величина, на которую будет изменять уровень нефти)
  * @return указатель на насос
  */
-pump* create_pump(const int* value, int delta_per_unit_time);
+pump* create_pump(int* value, int delta_per_unit_time);
 
 /**
  * включить насос
  * @param p указатель на насос
  */
 void turn_on_pump(pump* p);
-
 
 /**
  * выключить насос
@@ -47,7 +46,7 @@ int get_state_pump(const pump* p);
 void set_delta_pump(pump* p, int delta_per_unit_time);
 
 /**
- * Получить скорость перекакчки нефти
+ * Получить скорость перекачки нефти
  * @param p указатель на насос
  * @return скорость перекачки нефти
  */
