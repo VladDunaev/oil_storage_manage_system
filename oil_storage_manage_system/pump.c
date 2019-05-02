@@ -1,4 +1,5 @@
 #include "pump.h"
+#include "oil_storage_def.h"
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>

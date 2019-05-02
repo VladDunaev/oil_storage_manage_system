@@ -1,4 +1,5 @@
 #include "storage_tank.h"
+#include "oil_storage_def.h"
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
@@ -110,7 +111,9 @@ void turn_on_injection_pump(storage_tank* st){
     if (st->state == STORAGE_TANK_OFF){
         turn_on_storage_tank(st);
     }
-    turn_on_pump(st->injection_pump);
+    if (st->current_level < st->maximum_level){
+        turn_on_pump(st->injection_pump);
+    }
 }
 
 void turn_off_injection_pump(storage_tank* st){
@@ -133,7 +136,9 @@ void turn_on_pumping_pump(storage_tank* st){
     if (st->state == STORAGE_TANK_OFF){
         turn_on_storage_tank(st);
     }
-    turn_on_pump(st->pumping_pump);
+    if (st->current_level > st->minimum_level){
+        turn_on_pump(st->pumping_pump);
+    }
 }
 
 void turn_off_pumping_pump(storage_tank* st){
