@@ -8,7 +8,7 @@
  * @param p_ptr указатель на насос
  * @return NULL;
  */
-static void* pump_work(void* p_ptr);
+static void* _pump_work(void *p_ptr);
 
 /**
  * насос для перекачки нефтeпродуктов
@@ -45,7 +45,7 @@ pump* create_pump(int* value, int delta_per_unit_time){
 void turn_on_pump(pump* p){
     if (p->state == PUMP_OFF){
         p->state = PUMP_ON;
-        pthread_create(&p->work_thread, NULL, pump_work, p);
+        pthread_create(&p->work_thread, NULL, _pump_work, p);
     }
 }
 
@@ -69,13 +69,11 @@ int get_delta_pump(const pump* p){
 }
 
 void finalize_pump(pump* p){
-    if (p->state == PUMP_ON){
-        turn_off_pump(p);
-    }
+    turn_off_pump(p);
     free(p);
 }
 
-void *pump_work(void *p_ptr) {
+void *_pump_work(void *p_ptr) {
     pump* p = p_ptr;
     while(p->state == PUMP_ON){
         *p->value += p->delta;

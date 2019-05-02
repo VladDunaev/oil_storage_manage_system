@@ -9,8 +9,8 @@
 /**
  * резервуар для хранения нефтепродуктов
  */
-struct _storge_tank;
-typedef struct _storge_tank storage_tank;
+struct _storage_tank;
+typedef struct _storage_tank storage_tank;
 
 /**
  * Создать резервуар
@@ -74,7 +74,7 @@ unsigned int get_maximum_level_storage_tank(const storage_tank* st);
  * @param st указатель на резервуар
  * @return уровень нефти
  */
-unsigned int get_curent_level_storage_tank(storage_tank* st);
+unsigned int get_current_level_storage_tank(storage_tank *st);
 
 /**
  * уничтожить резевуар
