@@ -13,9 +13,13 @@ typedef struct _oil_storage oil_storage;
 /**
  * создать нефтехранилище
  * @param storage_tanks_count количество резервуаров
- * @return указатель на нефтехранилище
+ * @param min_level минимальный уровень нефтепродуктов в резервуаре
+ * @param max_level максимальный уровень нефтепродуктов в резервуаре
+ * @param speed_download_pump скорость закачки нефтепродутов в резервуар
+ * @param speed_upload_pump скорость откачки нефтпрепродуктов из резевуара
+ * @return указатель на нефтрехранилище
  */
-oil_storage* create_oil_storage(size_t storage_tanks_count);
+oil_storage* create_oil_storage(size_t storage_tanks_count, unsigned int min_level, unsigned int max_level, unsigned int speed_download_pump, unsigned int speed_upload_pump);
 
 /**
  * переключить резервуар в рабочее состояние
