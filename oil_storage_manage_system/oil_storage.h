@@ -115,8 +115,9 @@ int get_state_download_pump(const oil_storage* os, unsigned int number);
  * установить скорость закачки насоса в резевуаре
  * @param os указатель на нефтрехранилище
  * @param number номер резевуара
+ * @param download_speed скорость закачки
  */
-void set_speed_download_pump(oil_storage* os, unsigned int number);
+void set_speed_download_pump(oil_storage* os, unsigned int number, unsigned int download_speed);
 
 /**
  * получить скорость закачки насоса в резевуаре
@@ -152,8 +153,9 @@ int get_state_upload_pump(const oil_storage* os, unsigned int number);
  * установить скорость откачки насоса в резевуаре
  * @param os указатель на нефтрехранилище
  * @param number номер резевуара
+ * @param upload_speed скорость откачки
  */
-void set_speed_upload_pump(oil_storage* os, unsigned int number);
+void set_speed_upload_pump(oil_storage* os, unsigned int number, unsigned int upload_speed);
 
 /**
  * получить скорость откачки насоса в резевуаре
@@ -162,5 +164,12 @@ void set_speed_upload_pump(oil_storage* os, unsigned int number);
  * @return скорость откачки
  */
 unsigned int get_speed_upload_pump(const oil_storage* os, unsigned int number);
+
+/**
+ * получить количество резервуаров в нефтехранилище
+ * @param os указатель на нефтрехранилище
+ * @return количество резервуаров
+ */
+size_t get_count_tanks(const oil_storage *os);
 
 #endif //OIL_STORAGE_MANAGE_SYSTEM_OIL_STORAGE_H
