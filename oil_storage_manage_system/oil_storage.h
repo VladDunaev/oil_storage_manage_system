@@ -109,7 +109,7 @@ void turn_off_download_pump(oil_storage* os, unsigned int number);
  * @param number номер резевуара
  * @return PUMP_OFF - нерабочее состояние, PUMP_ON - рабочее состояние
  */
-int get_state_download_punp(const oil_storage* os, unsigned int number);
+int get_state_download_pump(const oil_storage* os, unsigned int number);
 
 /**
  * установить скорость закачки насоса в резевуаре
@@ -146,7 +146,7 @@ void turn_off_upload_pump(oil_storage* os, unsigned int number);
  * @param number номер резевуара
  * @return PUMP_OFF - нерабочее состояние, PUMP_ON - рабочее состояние
  */
-int get_state_upload_punp(const oil_storage* os, unsigned int number);
+int get_state_upload_pump(const oil_storage* os, unsigned int number);
 
 /**
  * установить скорость откачки насоса в резевуаре
