@@ -57,6 +57,8 @@ void start_oil_storage_interface(oil_storage *os){
     }
     pthread_join(_read_chars_thread, NULL);
     _reset_keypress_mode();
+    printf("\033[2J\033[0;0H");
+    fflush(stdin);
 }
 
 static void  _set_keypress_mode(){
@@ -183,8 +185,8 @@ static void _output_tanks_state(const oil_storage *os){
         }
     }
     printf("\033[K\n");
-    for(int j = height_tank - 1; j > 1; --j){
-        int segment_value = 2*j - 2;
+    for(size_t j = height_tank - 1; j > 1; --j){
+        int segment_value = (int)(2*j - 2);
         for(int i = 0; i < count_tanks; ++i){
             if (i == 0) printf("%s%s", between_tanks, between_tanks);
             else printf("%s", between_tanks);
@@ -363,7 +365,7 @@ static char* _implement_command(oil_storage *os, char *command_line){
     sscanf(command_line, "%s", command);
     if (strcmp(command, "exit") == 0){
         continue_read_char = 0;
-        return "ok";
+        return "ok (press any key)";
     }
     unsigned int number = strtol(command_line + strlen(command) + 1, &command_line, 10) - 1;
     if (strcmp(command, "turn_on_tank") == 0){
