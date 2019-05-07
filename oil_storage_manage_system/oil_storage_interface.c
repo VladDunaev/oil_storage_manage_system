@@ -339,7 +339,7 @@ static void _output_console(oil_storage *os){
         }else{
             size_t cl_len = strlen(console_log[console_log_size]);
             if (c == 127){
-                if (cl_len > 0) console_log[console_log_size][cl_len - 1] = '\0';
+                if (cl_len > 1) console_log[console_log_size][cl_len - 1] = '\0';
             }else{
                 console_log[console_log_size][cl_len] = c;
             }
@@ -384,5 +384,76 @@ static char* _implement_command(oil_storage *os, char *command_line){
         set_maximum_level_tank(os, number, max_level);
         return "ok";
     }
-    return "Unknown command, print help for additional info";
+    if (strcmp(command, "turn_on_download_pump") == 0){
+        turn_on_download_pump(os, number);
+        return "ok";
+    }
+    if (strcmp(command, "turn_off_download_pump") == 0){
+        turn_off_download_pump(os, number);
+        return "ok";
+    }
+    if (strcmp(command, "set_speed_download_pump") == 0){
+        unsigned int speed = strtol(command_line + 1, NULL, 10);
+        set_speed_download_pump(os, number, speed);
+        return "ok";
+    }
+    if (strcmp(command, "turn_on_upload_pump") == 0){
+        turn_on_upload_pump(os, number);
+        return "ok";
+    }
+    if (strcmp(command, "turn_off_upload_pump") == 0){
+        turn_off_upload_pump(os, number);
+        return "ok";
+    }
+    if (strcmp(command, "set_speed_upload_pump") == 0){
+        unsigned int speed = strtol(command_line + 1, NULL, 10);
+        set_speed_upload_pump(os, number, speed);
+        return "ok";
+    }
+    if (strcmp(command, "get_state_tank") == 0){
+        int state = get_state_tank(os, number);
+        if (state == STORAGE_TANK_ON) return "ON";
+        return "OFF";
+    }
+    if (strcmp(command, "get_minimum_level_tank") == 0){
+        unsigned int min_level = get_minimum_level_tank(os, number);
+        char* min_level_str = malloc(sizeof(char) * 9);
+        sprintf(min_level_str, "%u", min_level);
+        return min_level_str;
+    }
+    if (strcmp(command, "get_maximum_level_tank") == 0){
+        unsigned int max_level = get_maximum_level_tank(os, number);
+        char* max_level_str = malloc(sizeof(char) * 9);
+        sprintf(max_level_str, "%u", max_level);
+        return max_level_str;
+    }
+    if (strcmp(command, "get_current_level_tank") == 0){
+        unsigned int cur_level = get_current_level_tank(os, number);
+        char* cur_level_str = malloc(sizeof(char) * 9);
+        sprintf(cur_level_str, "%u", cur_level);
+        return cur_level_str;
+    }
+    if (strcmp(command, "get_state_download_pump") == 0){
+        int state = get_state_download_pump(os, number);
+        if (state == PUMP_ON) return "ON";
+        return "OFF";
+    }
+    if (strcmp(command, "get_speed_download_pump") == 0){
+        unsigned int speed = get_speed_download_pump(os, number);
+        char* speed_str = malloc(sizeof(char) * 9);
+        sprintf(speed_str, "%u", speed);
+        return speed_str;
+    }
+    if (strcmp(command, "get_state_upload_pump") == 0){
+        int state = get_state_upload_pump(os, number);
+        if (state == PUMP_ON) return "ON";
+        return "OFF";
+    }
+    if (strcmp(command, "get_speed_upload_pump") == 0){
+        unsigned int speed = get_speed_upload_pump(os, number);
+        char* speed_str = malloc(sizeof(char) * 9);
+        sprintf(speed_str, "%u", speed);
+        return speed_str;
+    }
+    return "Unknown command";
 }

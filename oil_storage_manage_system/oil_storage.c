@@ -207,7 +207,7 @@ void set_speed_upload_pump(oil_storage *os, unsigned int number, unsigned int up
 }
 
 unsigned int get_speed_upload_pump(const oil_storage* os, unsigned int number){
-    _send_operation_number(os->pipe_fds_in[number][1], GET_STATE_UPLOAD_PUMP);
+    _send_operation_number(os->pipe_fds_in[number][1], GET_SPEED_UPLOAD_PUMP);
     unsigned int upload_speed;
     read(os->pipe_fds_out[number][0], &upload_speed, sizeof(upload_speed));
     return upload_speed;

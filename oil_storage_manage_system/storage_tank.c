@@ -160,14 +160,14 @@ unsigned int get_speed_pumping_pump(const storage_tank* st){
 static void* _control_level(void* st_ptr){
     storage_tank* st = st_ptr;
     while(st->state == STORAGE_TANK_ON){
-        if (st->current_level >= st->maximum_level){
-            turn_off_pump(st->injection_pump);
-        }
         if (st->current_level <= st->minimum_level){
             turn_off_pump(st->pumping_pump);
         }
         if (st->current_level < 0){
             st->current_level = 0;
+        }
+        if (st->current_level >= st->maximum_level){
+            turn_off_pump(st->injection_pump);
         }
         usleep(TIME_UNIT);
     }
