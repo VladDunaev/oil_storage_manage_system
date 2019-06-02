@@ -17,9 +17,10 @@ typedef struct _oil_storage oil_storage;
  * @param max_level максимальный уровень нефтепродуктов в резервуаре
  * @param speed_download_pump скорость закачки нефтепродутов в резервуар
  * @param speed_upload_pump скорость откачки нефтпрепродуктов из резевуара
+ * @param path путь к исходному файлу (используется для создания очереди)
  * @return указатель на нефтрехранилище
  */
-oil_storage* create_oil_storage(size_t storage_tanks_count, unsigned int min_level, unsigned int max_level, unsigned int speed_download_pump, unsigned int speed_upload_pump);
+oil_storage* create_oil_storage(size_t storage_tanks_count, unsigned int min_level, unsigned int max_level, unsigned int speed_download_pump, unsigned int speed_upload_pump, const char* path);
 
 /**
  * переключить резервуар в рабочее состояние

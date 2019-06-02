@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     if (argc > 1){
         cnt_tanks = (size_t)strtol(argv[1], NULL, 10);
     }
-    oil_storage* os = create_oil_storage(cnt_tanks, MIN_LEVEL_STORAGE_DEFAULT, MAX_LEVEL_STORAGE_DEFAULT, 0, 0);
+    oil_storage* os = create_oil_storage(cnt_tanks, MIN_LEVEL_STORAGE_DEFAULT, MAX_LEVEL_STORAGE_DEFAULT, 0, 0, argv[0]);
     for(unsigned int i = 0; i < cnt_tanks; ++i){
         turn_on_download_pump(os, i);
         set_speed_download_pump(os, i, (unsigned int)(rand()%MAX_SPEED + 1));
